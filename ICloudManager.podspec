@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
   spec.author       = { "kmqq" => "supermanyqq@163.com" }
   spec.platform     = :ios, "12.0"
 
-  spec.source       = { :git => "https://github.com/supermanyqq/ICloudManager.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/supermanyqq/ICloudManager.git", :tag => spec.version }
 
   spec.source_files  = "ICloudManager", "ICloudManager/**/*.{h,m}"
   spec.exclude_files = "ICloudManager/Exclude"
