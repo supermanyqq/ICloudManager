@@ -129,17 +129,31 @@ public final class ICloudManager {
         }
     }
     
-    public func deleteRecord(_ model: RecordGenerateProtocol) {
-        let record = model.toRecord()
-        let container = CKContainer.default()
-        let privateDatabase = container.privateCloudDatabase
-        privateDatabase.delete(withRecordID: record.recordID) { (recordID, error) in
+    public func deleteRecord(_ id: CKRecord.ID) {
+//        let record = model.toRecord()
+//        let container = CKContainer.default()
+//        let privateDatabase = container.privateCloudDatabase
+        privateDB.delete(withRecordID: id) { (recordID, error) in
             if let error = error {
                 print("iCloud delete failed: \(error.localizedDescription)")
                 return
             }
             print("iCloud 删除成功")
         }
+    }
+    
+    public func deleteRecords(with ids: [CKRecord.ID]) {
+        let operation = CKModifyRecordsOperation()
+        operation.recordIDsToDelete = ids
+        operation.modifyRecordsCompletionBlock = { (records, ids, error) in
+            if let error = error {
+                print("iCloud 批量删除 failed: \(error.localizedDescription)")
+                return
+            }
+            print("iCloud 批量删除成功")
+        }
+        
+        privateDB.add(operation)
     }
     
     public func updateRecord(_ model: RecordGenerateProtocol) {

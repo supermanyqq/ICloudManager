@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "ICloudManager"
-  spec.version      = "0.0.3"
+  spec.version      = "0.0.4"
   spec.summary      = "iCloud manager"
   spec.description  = <<-DESC
                         Test cocoapods for iCloud manager
